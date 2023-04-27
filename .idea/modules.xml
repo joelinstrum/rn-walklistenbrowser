@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AudioBrowser.iml" filepath="$PROJECT_DIR$/.idea/AudioBrowser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/VirtualCoverBrowser.iml" filepath="$PROJECT_DIR$/.idea/VirtualCoverBrowser.iml" />
     </modules>
   </component>
 </project>

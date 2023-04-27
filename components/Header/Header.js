@@ -11,7 +11,7 @@ const Header = () => {
         style={styles.headerImage}
       />
       <View style={styles.textContainer}>
-        <Text style={styles.headerTextTitle}>Walk & Listen Browser</Text>
+        <Text style={styles.headerTextTitle}>Virtual Cover Browser</Text>
         <Text style={styles.headerSubtitle}>
           Prevents accidental clicks while listening with your phone in your
           pocket

@@ -20,14 +20,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.joe44850.rnvoicebrowser"
+      "package": "com.joe44850.virtualcoverbrowser"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "bad7807a-09ad-471e-9b81-7b9bcab5dc28"
+        "projectId": "ddbaabed-737f-4e2e-8caf-3d264a069c0a"
       }
     }
   }

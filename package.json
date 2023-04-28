@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.17.11",
+    "@react-native-community/checkbox": "^0.5.15",
     "@react-native-voice/voice": "^3.2.4",
     "expo": "~48.0.11",
     "expo-av": "~13.2.1",
@@ -26,7 +27,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.11",
     "react-native-webview": "11.26.0",
-    "rn-slide-button": "^1.0.3"
+    "rn-slide-button": "^1.0.3",
+    "expo-checkbox": "~2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

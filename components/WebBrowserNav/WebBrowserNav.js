@@ -1,6 +1,9 @@
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Entypo from "react-native-vector-icons/Entypo";
+import { getSize } from "../../lib/utils/helpers";
+
+const { width, height } = getSize();
 
 const WebBrowserNav = ({
   webViewgoback,
@@ -29,11 +32,15 @@ const WebBrowserNav = ({
 const styles = StyleSheet.create({
   tabBarContainer: {
     backgroundColor: "#000",
-    height: 56,
+    height: 65,
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: 16,
     justifyContent: "space-between",
+    position: "absolute",
+    top: height - 120,
+    zIndex: 25,
+    width: width,
   },
   icon: {
     fontSize: 50,

@@ -13,8 +13,8 @@ const Header = () => {
       <View style={styles.textContainer}>
         <Text style={styles.headerTextTitle}>Virtual Cover Browser</Text>
         <Text style={styles.headerSubtitle}>
-          Prevents accidental clicks while listening with your phone in your
-          pocket
+          Prevents accidental clicks while listening with your phone in
+          wallk-mode
         </Text>
       </View>
     </View>
@@ -24,10 +24,11 @@ const Header = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     position: "absolute",
-    width: width - 10,
-    height: 60,
-    top: 50,
-    left: 5,
+    width: width,
+    height: 100,
+    paddingTop: 30,
+    top: 0,
+    left: 0,
     backgroundColor: "#000",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   headerSubtitle: {
-    fontSize: 10,
+    fontSize: 12,
     color: "#ddd",
   },
 });

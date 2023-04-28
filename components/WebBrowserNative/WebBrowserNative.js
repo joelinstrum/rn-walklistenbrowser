@@ -22,16 +22,39 @@ const WebBrowserNative = () => {
   const [addressBarText, setAddressBarText] = useState();
   const { saveUrlToHistory } = useBrowserHistory();
   const [resetAddress, setResetAddress] = useState();
+  const [showSlider, setShowSlider] = useState(true);
+  const [settings, setSettings] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      const settings = await getSettings();
-      const homePage = settings?.homePage || HOME;
-      setUrl(homePage);
-      setAddressBarText(homePage);
+      const _settings = await getSettings();
+      setSettings(_settings);
     };
     init();
   }, []);
+
+  useEffect(() => {
+    if (settings) {
+      const homePage = settings?.homePage || HOME;
+      setUrl(homePage);
+      setAddressBarText(homePage);
+      setShowSlider(settings?.showSlider);
+    }
+  }, [settings]);
+
+  updateBrowserSettings = (toggle) => {
+    if (toggle) {
+      setShowWebBrowserSettings(true);
+      setShowSlider(false);
+    } else {
+      const init = async () => {
+        const _settings = await getSettings();
+        setSettings(_settings);
+        setShowWebBrowserSettings(false);
+      };
+      init();
+    }
+  };
 
   const onSlideComplete = (toggled) => {
     setItemOnTop(toggled ? "overlay" : "webview");
@@ -112,7 +135,7 @@ const WebBrowserNative = () => {
           {showWebBrowserSettings && (
             <WebBrowserSettings
               showSettings={showWebBrowserSettings}
-              updateDisplaySettings={() => setShowWebBrowserSettings(false)}
+              updateDisplaySettings={() => updateBrowserSettings(false)}
             />
           )}
           <WebBrowserAddressBar
@@ -140,16 +163,18 @@ const WebBrowserNative = () => {
             webViewgoback={webViewgoback}
             webViewNext={webViewNext}
             webViewHome={webViewHome}
-            webSettings={() => setShowWebBrowserSettings(true)}
+            webSettings={() => updateBrowserSettings(true)}
           />
         </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <EnableButton
-          title="Protect Browser"
-          onSlideComplete={onSlideComplete}
-        />
-      </View>
+      {showSlider && (
+        <View style={styles.buttonContainer}>
+          <EnableButton
+            title="Slide for walk mode"
+            onSlideComplete={onSlideComplete}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

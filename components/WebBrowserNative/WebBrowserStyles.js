@@ -6,23 +6,21 @@ const bottomHeight = 200;
 
 const styles = StyleSheet.create({
   defaultStyle: {
-    width: width - 10,
-    maxHeight: height - bottomHeight,
-    height: height - bottomHeight,
-    borderWidth: 5,
-    borderColor: "rgba(255, 255, 255, 1)",
+    width: width,
+    height: height,
+    borderWidth: 0,
     padding: 0,
     position: "relative",
-    top: 110,
-    left: 5,
+    top: 100,
+    left: 0,
     zIndex: 5,
   },
   overlay: {
     position: "absolute",
-    top: 110,
-    left: 5,
-    width: width - 10,
-    height: height - bottomHeight,
+    top: 100,
+    left: 0,
+    width: width,
+    height: height,
     borderWidth: 5,
     borderColor: "rgba(0, 0, 0, .25)",
     backgroundColor: "#000",
@@ -30,8 +28,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: "absolute",
-    top: height - bottomHeight / 3,
+    top: height - bottomHeight / 1.8,
     left: 80,
+    zIndex: 30,
   },
 });
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Pressable, View, StyleSheet, Text, TextInput } from "react-native";
+import CheckBox from "expo-checkbox";
 import { getSize } from "../../lib/utils/helpers";
 import { useBrowserSettings } from "../../lib/hooks";
 
@@ -28,6 +29,10 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
     updateDisplaySettings();
   };
 
+  const onPressCheckbox = (toggled) => {
+    setSettings({ ...settings, showSlider: toggled });
+  };
+
   const updateHomepage = (newValue) => {
     setSettings({ ...settings, homePage: newValue });
   };
@@ -35,7 +40,8 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
   useEffect(() => {
     const initSettings = async () => {
       const currentSettings = await getSettings();
-      setSettings(currentSettings);
+      const initialShowSliderValue = currentSettings?.showSlider ?? true;
+      setSettings({ ...currentSettings, showSlider: initialShowSliderValue });
       setUneditedSettings(currentSettings);
     };
     initSettings();
@@ -43,7 +49,10 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
 
   useEffect(() => {
     if (uneditedSettings) {
-      if (uneditedSettings?.homePage !== settings?.homePage) {
+      if (
+        uneditedSettings.homePage !== settings.homePage ||
+        uneditedSettings.showSlider !== settings.showSlider
+      ) {
         setSaveButtonEnabled(true);
       } else {
         setSaveButtonEnabled(false);
@@ -59,21 +68,27 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
       ]}
     >
       <Text style={styles.title}>Browser Settings</Text>
-      <View>
-        <Text>Home page:</Text>
+
+      <View style={[styles.settingContainer]}>
+        <Text style={styles.labelText}>Home page:</Text>
         <TextInput
           placeholder="Your preferred home page"
-          value={settings?.homePage || "https://fubar.com"}
+          value={settings?.homePage || "https://m.youtube.com"}
           style={styles.input}
           onChangeText={updateHomepage}
         />
       </View>
 
-      <View>
+      <View style={[styles.settingContainer]}>
+        <Text style={styles.labelText}>Show walk mode slider:</Text>
+        <CheckBox onValueChange={onPressCheckbox} value={settings.showSlider} />
+      </View>
+
+      <View style={[styles.settingContainer]}>
         <Text style={styles.msgText}>{message}</Text>
       </View>
 
-      <View style={styles.buttonContainer}>
+      <View style={[styles.settingContainer]}>
         <Pressable
           style={[
             styles.saveButton,
@@ -97,7 +112,7 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     left: 0,
-    width: width - 20,
+    width: width,
     backgroundColor: "#fff",
     minWidth: width - 10,
     minHeight: 50,
@@ -118,17 +133,21 @@ const styles = StyleSheet.create({
   showContainer: {
     opacity: 1,
     top: 0,
-    zIndex: 20,
+    zIndex: 100,
   },
   hideContainer: {
     opacity: 0,
     top: -10000,
     zIndex: 0,
   },
-  buttonContainer: {
+  settingContainer: {
     display: "flex",
     flexDirection: "row",
-    width: width - 10,
+    width: width,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    marginBottom: 10,
   },
   saveButton: {
     width: 180,
@@ -164,10 +183,14 @@ const styles = StyleSheet.create({
   },
   msgText: {
     height: 40,
-    fontSize: 20,
+    fontSize: 16,
+    color: "green",
   },
   title: {
     height: 40,
+  },
+  labelText: {
+    marginRight: 5,
   },
 });
 

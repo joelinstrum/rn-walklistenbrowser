@@ -2,7 +2,7 @@
   "expo": {
     "name": "VirtualCoverBrowser",
     "slug": "VirtualCoverBrowser",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./assets/audio-browser-icon.png",
     "userInterfaceStyle": "light",
@@ -17,14 +17,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/audio-browser-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.joe44850.rnvoicebrowser",
-      "versionCode": 11
+      "versionCode": 12
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/audio-browser-icon.pngg"
     },
     "extra": {
       "eas": {

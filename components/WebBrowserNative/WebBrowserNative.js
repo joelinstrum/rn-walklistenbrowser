@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { useBrowserHistory, useBrowserSettings } from "../../lib/hooks";
+import {
+  useBrowserHistory,
+  useBrowserInjection,
+  useBrowserSettings,
+} from "../../lib/hooks";
 import {
   EnableButton,
   WebBrowserNav,
@@ -24,6 +28,7 @@ const WebBrowserNative = () => {
   const [resetAddress, setResetAddress] = useState();
   const [showSlider, setShowSlider] = useState(true);
   const [settings, setSettings] = useState(null);
+  const { onMessage, injectedScript, navChange } = useBrowserInjection(url);
 
   useEffect(() => {
     const init = async () => {
@@ -158,6 +163,10 @@ const WebBrowserNative = () => {
             ref={webviewRef}
             renderLoading={LoadingIndicatorView}
             startInLoadingState={true}
+            javaScriptEnabledAndroid={true}
+            onMessage={onMessage}
+            injectedJavaScript={injectedScript}
+            onNavigationStateChange={navChange}
           />
           <WebBrowserNav
             webViewgoback={webViewgoback}

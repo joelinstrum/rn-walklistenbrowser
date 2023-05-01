@@ -39,11 +39,13 @@ const WebBrowserNative = () => {
   }, []);
 
   useEffect(() => {
+    const homePage = settings?.homePage || HOME;
     if (settings) {
-      const homePage = settings?.homePage || HOME;
-      setUrl(homePage);
       setAddressBarText(homePage);
       setShowSlider(settings?.showSlider);
+    }
+    if (settings && !url && !addressBarText) {
+      setUrl(homePage);
     }
   }, [settings]);
 
@@ -166,7 +168,7 @@ const WebBrowserNative = () => {
             startInLoadingState={true}
             javaScriptEnabledAndroid={true}
             onMessage={onMessage}
-            injectedJavaScript={injectedScript}
+            injectedJavaScript={settings?.autoSkipAds ? injectedScript : null}
             onNavigationStateChange={navChange}
           />
           <WebBrowserNav

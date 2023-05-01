@@ -41,6 +41,10 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
     setSettings({ ...settings, homePage: newValue });
   };
 
+  const updateCover = (newValue) => {
+    setSettings({ ...settings, useDarkCover: newValue });
+  };
+
   useEffect(() => {
     const initSettings = async () => {
       const currentSettings = await getSettings();
@@ -61,7 +65,8 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
       if (
         uneditedSettings.homePage !== settings.homePage ||
         uneditedSettings.showSlider !== settings.showSlider ||
-        uneditedSettings.autoSkipAds !== settings.autoSkipAds
+        uneditedSettings.autoSkipAds !== settings.autoSkipAds ||
+        uneditedSettings.useDarkCover !== settings.useDarkCover
       ) {
         setSaveButtonEnabled(true);
       } else {
@@ -97,6 +102,13 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
       <View style={[styles.settingContainer]}>
         <Text style={styles.labelText}>Auto-skip ads on YouTube</Text>
         <CheckBox onValueChange={updateAdsPref} value={settings.autoSkipAds} />
+      </View>
+
+      <View style={[styles.settingContainer]}>
+        <Text style={styles.labelText}>
+          Use dark cover (uncheck to use clear cover)
+        </Text>
+        <CheckBox onValueChange={updateCover} value={settings.useDarkCover} />
       </View>
 
       <View style={[styles.settingContainer]}>

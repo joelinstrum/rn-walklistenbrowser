@@ -131,6 +131,7 @@ const WebBrowserNative = () => {
         style={{
           ...styles.overlay,
           ...{ zIndex: itemOnTop === "webview" ? 1 : 10 },
+          ...{ opacity: settings?.useDarkCover !== false ? 0.4 : 0 },
         }}
       >
         <Text>Overlay</Text>

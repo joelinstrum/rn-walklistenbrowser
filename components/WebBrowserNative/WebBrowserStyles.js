@@ -24,7 +24,12 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "rgba(0, 0, 0, .25)",
     backgroundColor: "#000",
-    opacity: 0.35,
+  },
+  overlayDark: {
+    opacity: 8,
+  },
+  overlayLight: {
+    opacity: 0,
   },
   buttonContainer: {
     position: "absolute",

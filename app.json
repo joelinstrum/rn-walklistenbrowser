@@ -2,7 +2,7 @@
   "expo": {
     "name": "VirtualCoverBrowser",
     "slug": "VirtualCoverBrowser",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/audio-browser-icon.png",
     "userInterfaceStyle": "light",
@@ -23,7 +23,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.joe44850.rnvoicebrowser",
-      "versionCode": 5
+      "versionCode": 7
     },
     "web": {
       "favicon": "./assets/favicon.png"

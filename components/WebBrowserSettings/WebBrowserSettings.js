@@ -33,6 +33,10 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
     setSettings({ ...settings, showSlider: toggled });
   };
 
+  const updateAdsPref = (toggled) => {
+    setSettings({ ...settings, autoSkipAds: toggled });
+  };
+
   const updateHomepage = (newValue) => {
     setSettings({ ...settings, homePage: newValue });
   };
@@ -41,7 +45,12 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
     const initSettings = async () => {
       const currentSettings = await getSettings();
       const initialShowSliderValue = currentSettings?.showSlider ?? true;
-      setSettings({ ...currentSettings, showSlider: initialShowSliderValue });
+      const initialAutoSkip = currentSettings?.autoSkipAds ?? true;
+      setSettings({
+        ...currentSettings,
+        showSlider: initialShowSliderValue,
+        autoSkipAds: initialAutoSkip,
+      });
       setUneditedSettings(currentSettings);
     };
     initSettings();
@@ -51,7 +60,8 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
     if (uneditedSettings) {
       if (
         uneditedSettings.homePage !== settings.homePage ||
-        uneditedSettings.showSlider !== settings.showSlider
+        uneditedSettings.showSlider !== settings.showSlider ||
+        uneditedSettings.autoSkipAds !== settings.autoSkipAds
       ) {
         setSaveButtonEnabled(true);
       } else {
@@ -82,6 +92,11 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
       <View style={[styles.settingContainer]}>
         <Text style={styles.labelText}>Show walk mode slider:</Text>
         <CheckBox onValueChange={onPressCheckbox} value={settings.showSlider} />
+      </View>
+
+      <View style={[styles.settingContainer]}>
+        <Text style={styles.labelText}>Auto-skip ads on YouTube</Text>
+        <CheckBox onValueChange={updateAdsPref} value={settings.autoSkipAds} />
       </View>
 
       <View style={[styles.settingContainer]}>

@@ -41,6 +41,7 @@ const WebBrowserAddressBar = ({ url, updateUrl, textOnChange, reset }) => {
           selectTextOnFocus
           ref={textRef}
           textContentType="URL"
+          accessibilityLabel="url"
         />
         <Pressable style={styles.button} onTouchEnd={() => updateUrl(text)}>
           <Text style={styles.text}>Go</Text>

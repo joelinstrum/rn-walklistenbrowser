@@ -91,24 +91,42 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
           value={settings?.homePage || "https://m.youtube.com"}
           style={styles.input}
           onChangeText={updateHomepage}
+          accessibilityLabel="preferred homepage"
         />
       </View>
 
       <View style={[styles.settingContainer]}>
         <Text style={styles.labelText}>Show walk mode slider:</Text>
-        <CheckBox onValueChange={onPressCheckbox} value={settings.showSlider} />
+        <CheckBox
+          onValueChange={onPressCheckbox}
+          value={settings.showSlider}
+          accessibilityLabel="Display walk mode slider"
+        />
       </View>
 
       <View style={[styles.settingContainer]}>
-        <Text style={styles.labelText}>Auto-skip ads on YouTube</Text>
-        <CheckBox onValueChange={updateAdsPref} value={settings.autoSkipAds} />
+        <Text style={styles.labelText}>Auto-minimize ads on YouTube</Text>
+        <CheckBox
+          onValueChange={updateAdsPref}
+          value={settings.autoSkipAds}
+          accessibilityLabel="Auto-minimize ads on YouTube"
+        />
       </View>
 
       <View style={[styles.settingContainer]}>
-        <Text style={styles.labelText}>
-          Use dark cover (uncheck to use clear cover)
-        </Text>
-        <CheckBox onValueChange={updateCover} value={settings.useDarkCover} />
+        <View>
+          <Text style={styles.labelText}>
+            <Text>Use dark cover</Text>
+            <Text>(Uncheck for clear)</Text>
+          </Text>
+        </View>
+        <View>
+          <CheckBox
+            onValueChange={updateCover}
+            value={settings.useDarkCover}
+            accessibilityLabel="Checked = Use dark-cover, unchecked = clear"
+          />
+        </View>
       </View>
 
       <View style={[styles.settingContainer]}>
@@ -124,10 +142,15 @@ const WebBrowserSettings = ({ showSettings, updateDisplaySettings }) => {
               : styles.saveButtonDisabled,
           ]}
           onPress={saveButtonEnabled ? onPressSave : () => {}}
+          accessibilityLabel="Save settings"
         >
           <Text style={styles.saveButtonText}>Save</Text>
         </Pressable>
-        <Pressable style={styles.closeButton} onPress={onPressClose}>
+        <Pressable
+          style={styles.closeButton}
+          onPress={onPressClose}
+          accessibilityLabel="Close modal settings"
+        >
           <Text style={styles.closeButtonText}>Close</Text>
         </Pressable>
       </View>
@@ -173,8 +196,10 @@ const styles = StyleSheet.create({
     width: width,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 10,
+    borderColor: "#000",
+    borderSize: 1,
+    margin: 10,
+    maxSize: width - 40,
   },
   saveButton: {
     width: 180,
@@ -218,6 +243,7 @@ const styles = StyleSheet.create({
   },
   labelText: {
     marginRight: 5,
+    fontSize: 20,
   },
 });
 

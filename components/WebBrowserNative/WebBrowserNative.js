@@ -19,6 +19,7 @@ const HOME = "https://m.youtube.com";
 
 const WebBrowserNative = () => {
   const [itemOnTop, setItemOnTop] = useState("webview");
+  const [injectable, setInectable] = useState(true);
   const { getSettings } = useBrowserSettings();
   const [url, setUrl] = useState();
   const [showAutoComplete, setShowAutoComplete] = useState(false);
@@ -127,6 +128,12 @@ const WebBrowserNative = () => {
     );
   }
 
+  useEffect(() => {
+    if (settings && settings.hasOwnProperty("autoSkipAds")) {
+      setInectable(settings.autoSkipAds);
+    }
+  }, [settings?.autoSkipAds]);
+
   return (
     <SafeAreaView style={{ position: "relative" }}>
       <View
@@ -168,7 +175,7 @@ const WebBrowserNative = () => {
             startInLoadingState={true}
             javaScriptEnabledAndroid={true}
             onMessage={onMessage}
-            injectedJavaScript={settings?.autoSkipAds ? injectedScript : null}
+            injectedJavaScript={injectable ? injectedScript : null}
             onNavigationStateChange={navChange}
           />
           <WebBrowserNav
